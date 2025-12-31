@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You are special! ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital@1&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="app">
+        <section id="page1" class="view active">
+            <div class="content">
+                <div class="avatar-container ripple">
+                    <img src="/p2.png" class="avatar-img">
+                </div>
+                <h1 class="glow-text">Hey Beautiful ✨</h1>
+                <p class="sub-text">Do you even know how cute you are?</p>
+                <button class="glass-btn pulse" onclick="startCutenessMeter()">Open My Heart ❤️</button>
+            </div>
+        </section>
+
+        <section id="page2" class="view">
+            <div class="content">
+                <h2 id="meterStatus" class="status-msg">Scanning your cuteness... 🔍</h2>
+                <div class="meter-track">
+                    <div id="progressBar" class="meter-fill"></div>
+                </div>
+                <h1 id="percentage" class="percentage-num">0%</h1>
+                <p id="warning" class="warning-box"></p>
+            </div>
+        </section>
+
+        <section id="page3" class="view">
+            <div class="content">
+                <div class="glowing-heart">💖</div>
+                <h2 class="title-text">Just for you</h2>
+                <p class="sub-text">Tap each heart to reveal 💌</p>
+                <div class="list-container">
+                    <div class="list-item" onclick="reveal(this, 'Your smile is literally magic ✨')"><span>❤️</span></div>
+                    <div class="list-item" onclick="reveal(this, 'The way you talk is so sweet 🌸')"><span>❤️</span></div>
+                    <div class="list-item" onclick="reveal(this, 'You make my world brighter 🌍')"><span>❤️</span></div>
+                    <div class="list-item" onclick="reveal(this, 'You are my favorite human 👑')"><span>❤️</span></div>
+                    <div class="list-item" onclick="reveal(this, 'I am so lucky to have you ❤️')"><span>❤️</span></div>
+                </div>
+                <button id="seeMoreBtn" class="see-more hidden slide-up" onclick="showPage('page4')">Keep going ➔</button>
+            </div>
+        </section>
+
+        <section id="page4" class="view">
+            <div class="content">
+                <p class="note-head">A little note for you ✍️</p>
+                <div class="letter-box" onclick="openLetter()">
+                    <div id="letterClosed">
+                        <div class="ribbon-heart">💝</div>
+                        <p>Tap to Read My Heart</p>
+                    </div>
+                    <div id="letterOpen" class="hidden">
+                        <p class="handwriting" id="typing-area"></p>
+                        <br>
+                        <span class="next-step" onclick="showPage('page5')">One more thing ➔</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page5" class="view">
+            <div class="content">
+                <div class="avatar-container small-avatar" style="border-radius: 100%;">
+                    <img src= "data:image/jpeg;base64,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">
+                </div>
+                <h2 class="italic-final">You'll always be my #1 💍</h2>
+                <p class="forever-text">Forever & Always ❤️</p>
+
+                <footer class="branding-footer">
+                    <p>Created with ❤️ by <span>DevByHans</span></p>
+                    <a href="https://t.me/DevByHans_official" target="_blank" class="tg-link">
+                        Join us: @DevByHans_official
+                    </a>
+                </footer>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
